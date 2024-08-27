@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddle Challenge</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #responseText {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .glow {
+            text-shadow: 0 0 10px red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #clickText {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Placeholder for dynamic content -->
+    <div id="dynamicContent"></div>
+
+    <script>
+        // Encoded answers
+        const encodedResponses = {
+            'riddle': 'b2guLi4uYWhhaGFhIHRoYXQgc29tZSB0aGluZyB5b3UgcmVhbCBhbmdlbmRpYSBSSURkTEU=',
+            'yes': 'THp3IHVhaHo=',
+            'qauaka': 'well you did it say CentDecem to win',
+            'centdecem': 'Click this',
+            'upmalaoshsklslkssksskssksslslsisjsk': 'You win type UPMALAOSHSKLSLKSKSKSKSKSKSLSLSISJSK in WhatsApp to conquer your quest'
+        };
+
+        function decodeBase64(str) {
+            return atob(str);
+        }
+
+        // Create input box and button dynamically
+        function createInputElements() {
+            const container = document.getElementById('dynamicContent');
+            const inputBox = document.createElement('input');
+            const confirmButton = document.createElement('button');
+            const responseText = document.createElement('p');
+            const clickText = document.createElement('p');
+
+            inputBox.type = 'text';
+            inputBox.id = 'inputBox';
+            inputBox.placeholder = 'You disappointed me.';
+            inputBox.style.backgroundColor = 'black';
+            inputBox.style.border = '2px solid red';
+            inputBox.style.color = 'white';
+            inputBox.style.padding = '10px';
+            inputBox.style.fontSize = '16px';
+            inputBox.style.outline = 'none';
+            inputBox.style.borderRadius = '5px';
+
+            confirmButton.id = 'confirmButton';
+            confirmButton.textContent = 'ARE YOU SURE';
+            confirmButton.style.backgroundColor = 'black';
+            confirmButton.style.color = 'red';
+            confirmButton.style.border = '2px solid red';
+            confirmButton.style.padding = '10px 20px';
+            confirmButton.style.cursor = 'pointer';
+            confirmButton.style.borderRadius = '5px';
+            confirmButton.style.marginTop = '10px';
+            confirmButton.style.fontSize = '16px';
+
+            responseText.id = 'responseText';
+            clickText.id = 'clickText';
+            clickText.classList.add('hidden');
+            clickText.textContent = 'motiochomp';
+            clickText.style.cursor = 'pointer';
+
+            container.appendChild(inputBox);
+            container.appendChild(confirmButton);
+            container.appendChild(responseText);
+            container.appendChild(clickText);
+        }
+
+        function setupEventListeners() {
+            document.getElementById('confirmButton').addEventListener('click', function() {
+                const inputBox = document.getElementById('inputBox');
+                const responseText = document.getElementById('responseText');
+                const clickText = document.getElementById('clickText');
+
+                const inputValue = inputBox.value.trim().toLowerCase();
+                let response = '';
+
+                switch (inputValue) {
+                    case 'riddle':
+                        response = decodeBase64(encodedResponses.riddle);
+                        inputBox.placeholder = 'Type yes after typing Riddle';
+                        break;
+                    case 'yes':
+                        response = decodeBase64(encodedResponses.yes);
+                        inputBox.placeholder = 'Type qauaka';
+                        break;
+                    case 'qauaka':
+                        response = encodedResponses.qauaka;
+                        inputBox.placeholder = 'Type CentDecem';
+                        break;
+                    case 'centdecem':
+                        response = encodedResponses.centdecem;
+                        clickText.classList.remove('hidden');
+                        break;
+                    case 'upmalaoshsklslkssksskssksslslsisjsk':
+                        response = encodedResponses.upmalaoshsklslkssksskssksslslsisjsk;
+                        break;
+                    default:
+                        response = 'Invalid code';
+                }
+
+                responseText.innerHTML = response;
+            });
+
+            document.getElementById('clickText').addEventListener('click', function() {
+                let count = 0;
+                this.addEventListener('click', function() {
+                    count++;
+                    if (count >= 1000) {
+                        document.getElementById('responseText').innerHTML = 'You win type UPMALAOSHSKLSLKSKSKSKSKSKSLSLSISJSK in WhatsApp to conquer your quest';
+                    }
+                });
+            });
+        }
+
+        // Initialize the page
+        createInputElements();
+        setupEventListeners();
+
+        // Fake HTML comments and codes to obscure real functionality
+        /*
+        <!-- Random comment to confuse -->
+        <input type="hidden" value="fakecode1">
+        <input type="hidden" value="fakecode2">
+        <input type="hidden" value="fakecode3">
+        <input type="hidden" value="fakecode4">
+        <input type="hidden" value="fakecode5">
+        <!-- More fake codes -->
+        */
+
+        // Obfuscate real JavaScript
+        (function() {
+            // Hidden data processing
+        })();
+    </script>
+</body>
+</html>
